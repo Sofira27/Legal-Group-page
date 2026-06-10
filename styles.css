@@ -782,6 +782,7 @@ legend { display: none; }
   background: rgba(212,166,58,.1);
   border-radius: var(--radius-full);
   padding: 2px 10px;
+  width: fit-content;
 }
 
 .article-card__body h3 {
@@ -811,7 +812,7 @@ legend { display: none; }
 
 .article-card:hover .article-card__read {
   letter-spacing: 0.03em;
-}}
+}
 
 
 /* ============================================================

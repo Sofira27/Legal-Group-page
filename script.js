@@ -170,28 +170,34 @@ function escapeHTML(str) {
   /* ---------- Helpers de UI ---------- */
 
   /** Muestra el paso indicado y oculta los demás */
-  function showStep(n) {
-    Object.keys(steps).forEach(k => {
-      steps[k].classList.toggle('hidden', parseInt(k) !== n);
-    });
+ function showStep(n, doScroll = true) {
+  Object.keys(steps).forEach(k => {
+    steps[k].classList.toggle('hidden', parseInt(k) !== n);
+  });
 
-    // Actualizar barra de progreso
-    progressSteps.forEach(el => {
-      const stepNum = parseInt(el.dataset.step);
-      el.classList.remove('active', 'completed');
+  // Actualizar barra de progreso
+  progressSteps.forEach(el => {
+    const stepNum = parseInt(el.dataset.step);
+    el.classList.remove('active', 'completed');
 
-      if (stepNum === n)    el.classList.add('active');
-      if (stepNum < n)      el.classList.add('completed');
-    });
+    if (stepNum === n) el.classList.add('active');
+    if (stepNum < n) el.classList.add('completed');
+  });
 
-    currentStep = n;
+  currentStep = n;
 
-    // Scroll suave al formulario
+  // Scroll solo cuando el usuario cambie de paso
+  if (doScroll) {
     const wrapper = form.closest('.form-wrapper');
+
     if (wrapper) {
-      wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      wrapper.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     }
   }
+}
 
   /** Muestra o limpia un mensaje de error en un campo */
   function setError(fieldId, message) {
@@ -451,7 +457,7 @@ Quisiera recibir orientación legal sobre mi caso.`;
   });
 
   /* ---------- Inicialización ---------- */
-  showStep(1);
+  showStep(1, false);
 })();
 
 
