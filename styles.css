@@ -668,57 +668,253 @@ legend { display: none; }
 /* ============================================================
    9. HELP CARDS (¿Cómo ayudamos?)
    ============================================================ */
-.help-grid { gap: var(--space-6); }
 
 .help-card {
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: var(--radius-lg);
-  padding: var(--space-8) var(--space-6);
-  position: relative;
-  transition: background var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
+    position: relative;
+    overflow: hidden;
+
+    padding: 2.2rem 1.8rem;
+
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,.05),
+        rgba(255,255,255,.03)
+    );
+
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 24px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.18),
+        inset 0 1px 0 rgba(255,255,255,.04);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease,
+        border-color .35s ease;
 }
 
-.help-card:hover {
-  background: rgba(255,255,255,.07);
-  border-color: rgba(212,166,58,.3);
-  transform: translateY(-4px);
+/* Línea superior elegante */
+
+.help-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        var(--color-gold),
+        rgba(212,166,58,.25),
+        transparent
+    );
 }
+
+/* Brillo sutil */
+
+.help-card::after {
+    content: "";
+
+    position: absolute;
+
+    top: -120%;
+    left: -50%;
+
+    width: 35%;
+    height: 300%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,.06),
+        transparent
+    );
+
+    transform: rotate(25deg);
+
+    transition: .8s ease;
+}
+
+/* Número */
 
 .help-card__number {
-  font-family: var(--font-display);
-  font-size: var(--text-4xl);
-  font-weight: 900;
-  color: rgba(212,166,58,.12);
-  line-height: 1;
-  margin-bottom: var(--space-4);
-  letter-spacing: -0.04em;
-  pointer-events: none;
+    position: absolute;
+
+    top: 16px;
+    right: 18px;
+
+    font-family: var(--font-display);
+
+    font-size: clamp(2.8rem, 5vw, 4rem);
+
+    font-weight: 900;
+
+    line-height: 1;
+
+    letter-spacing: -0.05em;
+
+    color: rgba(212,166,58,.36);
+
+    pointer-events: none;
+
+    user-select: none;
 }
+
+/* Icono */
 
 .help-card__icon {
-  width: 44px;
-  height: 44px;
-  margin-bottom: var(--space-4);
+    width: 54px;
+    height: 54px;
+
+    margin-bottom: 1.4rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(212,166,58,.10);
+
+    border: 1px solid rgba(212,166,58,.22);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04),
+        0 6px 18px rgba(212,166,58,.06);
+
+    transition: all .35s ease;
 }
 
-.help-card__icon svg { width: 40px; height: 40px; }
+.help-card__icon svg {
+    width: 26px;
+    height: 26px;
+}
+
+/* Título */
 
 .help-card h3 {
-  font-family: var(--font-display);
-  font-size: var(--text-lg);
-  font-weight: 700;
-  color: var(--color-white);
-  margin-bottom: var(--space-3);
-  line-height: 1.3;
+    font-family: var(--font-display);
+
+    font-size: 1.2rem;
+
+    font-weight: 700;
+
+    color: var(--color-white);
+
+    line-height: 1.4;
+
+    margin-bottom: .8rem;
+
+    transition: color .3s ease;
 }
+
+/* Línea decorativa */
+
+.help-card h3::after {
+    content: "";
+
+    display: block;
+
+    width: 38px;
+    height: 2px;
+
+    margin-top: 10px;
+
+    border-radius: 999px;
+
+    background: linear-gradient(
+        90deg,
+        var(--color-gold),
+        transparent
+    );
+}
+
+/* Texto */
 
 .help-card p {
-  font-size: var(--text-sm);
-  color: rgba(255,255,255,.6);
-  line-height: 1.75;
+    font-size: .95rem;
+
+    line-height: 1.8;
+
+    color: rgba(255,255,255,.68);
+
+    transition: color .3s ease;
 }
 
+/* Hover */
+
+.help-card:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(212,166,58,.28);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.25),
+        0 0 18px rgba(212,166,58,.08);
+}
+
+.help-card:hover::after {
+    left: 130%;
+}
+
+.help-card:hover .help-card__icon {
+    transform: scale(1.05);
+
+    background: rgba(212,166,58,.16);
+
+    border-color: rgba(212,166,58,.38);
+
+    box-shadow:
+        0 10px 22px rgba(212,166,58,.12);
+}
+
+.help-card:hover h3 {
+    color: var(--color-gold);
+}
+
+.help-card:hover p {
+    color: rgba(255,255,255,.82);
+}
+
+/* Responsive */
+
+@media (max-width: 768px) {
+
+    .help-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .help-card__number {
+        font-size: 3rem;
+        top: 14px;
+        right: 16px;
+    }
+
+    .help-card__icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .help-card__icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .help-card h3 {
+        font-size: 1.1rem;
+    }
+
+    .help-card p {
+        font-size: .92rem;
+    }
+}
 
 /* ============================================================
    10. VIDEO CARDS (Casos reales)
@@ -1569,6 +1765,33 @@ select.form-control option {
     --space-24: 4rem;
     --space-20: 3.5rem;
     --space-16: 3rem;
+  }
+  /* ===== FORM — fixes responsive ===== */
+
+  /* Botón submit: ancho completo y apilado */
+  .form-nav--split {
+    flex-direction: column-reverse;
+    gap: var(--space-3);
+  }
+
+  .form-nav--split .btn--gold,
+  .form-nav--split button[type="submit"] {
+    width: 100%;
+    justify-content: center;
+    font-size: var(--text-sm);
+    padding: 0.85rem 1.25rem;
+  }
+
+  .form-nav--split .btn--outline {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* También el botón del paso 1 */
+  .form-nav .btn--gold {
+    width: 100%;
+    justify-content: center;
   }
 
   /* Navbar */

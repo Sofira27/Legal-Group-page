@@ -1,13 +1,8 @@
-/* ============================================================
-   LEGAL GROUP – Defensa y Recuperación Legal
-   script.js — Lógica principal de la landing page
-   ============================================================ */
 
-/* ============================================================
-   ⚠️  CONFIGURACIÓN — Edita solo esta sección
-   ============================================================ */
+
+
 const CONFIG = {
-  // Reemplaza con el número real del despacho (formato: código país + número, sin + ni espacios)
+
   WHATSAPP_NUMBER: '573152616931',
 };
 
