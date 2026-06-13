@@ -590,6 +590,7 @@ legend { display: none; }
 
 /* Section divider */
 .section-divider--hero {
+  display: block;
   position: absolute;
   bottom: -1px;
   left: 0;
@@ -598,7 +599,10 @@ legend { display: none; }
   background: var(--color-off-white);
   clip-path: polygon(0 100%, 100% 0, 100% 100%);
 }
-
+/* Mobile oculta */
+.banner-fraudes{
+    display: none;
+}
 
 /* ============================================================
    8. FRAUD CARDS (tipos de estafa)
@@ -636,8 +640,8 @@ legend { display: none; }
 
 .fraud-card:hover::before { transform: scaleX(1); }
 
-.fraud-card__icon {
-  width: 52px;
+/*.fraud-card__icon {
+  width: 90%;
   height: 52px;
   background: rgba(212,166,58,.08);
   border-radius: var(--radius-md);
@@ -645,9 +649,22 @@ legend { display: none; }
   align-items: center;
   justify-content: center;
   margin-bottom: var(--space-4);
+}*/
+
+.fraud-card__image{
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 16px;
+    margin-bottom: 20px;
 }
 
-.fraud-card__icon svg { width: 32px; height: 32px; }
+.fraud-card__image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 
 .fraud-card h3 {
   font-family: var(--font-display);
@@ -656,12 +673,14 @@ legend { display: none; }
   color: var(--color-navy);
   margin-bottom: var(--space-2);
   line-height: 1.3;
+  text-align: center;
 }
 
 .fraud-card p {
   font-size: var(--text-sm);
   color: var(--color-gray-600);
   line-height: 1.65;
+  text-align: center;
 }
 
 
@@ -1871,11 +1890,8 @@ select.form-control option {
   .whatsapp-fab { bottom: 20px; right: 20px; width: 54px; height: 54px; }
   .whatsapp-fab__tooltip { display: none; }
 
-  /* Section */
-  .section-divider--hero { height: 32px; }
+  
 }
-
-
 /* ============================================================
    20. RESPONSIVE — SMALL MOBILE (≤ 480px)
    ============================================================ */
