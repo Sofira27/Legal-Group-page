@@ -682,6 +682,78 @@ legend { display: none; }
   line-height: 1.65;
   text-align: center;
 }
+.fraud-card{
+    display: flex;
+    flex-direction: column;
+}
+
+.fraud-card__details{
+    max-height: 0;
+    overflow: hidden;
+
+    opacity: 0;
+
+    transition:
+        max-height .45s ease,
+        opacity .35s ease,
+        margin-top .35s ease;
+}
+
+.fraud-card.active .fraud-card__details{
+    max-height: 600px;
+    opacity: 1;
+    margin-top: 1rem;
+}
+
+.fraud-card__list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fraud-card__list li{
+    position: relative;
+
+    padding-left: 1.8rem;
+    margin-bottom: .9rem;
+
+    font-size: var(--text-sm);
+    color: var(--color-gray-600);
+    line-height: 1.6;
+}
+
+.fraud-card__list li::before{
+    content: "✓";
+
+    position: absolute;
+    left: 0;
+
+    color: var(--color-gold);
+
+    font-weight: 700;
+}
+
+.fraud-card__toggle{
+    margin-top: auto;
+
+    padding-top: 1rem;
+
+    background: none;
+    border: none;
+
+    color: var(--color-gold);
+
+    font-weight: 700;
+    font-size: var(--text-sm);
+
+    cursor: pointer;
+
+    transition: opacity .3s ease;
+}
+
+.fraud-card__toggle:hover{
+    opacity: .8;
+}
 
 
 /* ============================================================
@@ -934,7 +1006,127 @@ legend { display: none; }
         font-size: .92rem;
     }
 }
+/* ============================================================
+   9. TEAM
+   ============================================================ */
+.team{
+    background:#071A35;
+}
 
+.teamSwiper .swiper-slide{
+    height: auto;
+    display: flex;
+}
+
+.team-card{
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 28px;
+    padding: 2rem;
+
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.team-card:hover{
+    transform:translateY(-8px);
+
+    border-color:rgba(212,166,58,.35);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.25);
+}
+
+.team-card__photo{
+    width:250px;
+    height:250px;
+
+    border-radius:24px;
+
+    object-fit:cover;
+
+    margin-bottom:1.5rem;
+}
+
+.team-card__badge{
+    display:inline-block;
+
+    padding:.6rem 1rem;
+
+    border-radius:999px;
+
+    background:rgba(212,166,58,.15);
+
+    border:1px solid rgba(212,166,58,.35);
+
+    color:var(--color-gold);
+
+    font-size:.75rem;
+    font-weight:700;
+
+    text-transform:uppercase;
+
+    margin-bottom:1rem;
+}
+
+.team-card h3{
+    color:white;
+
+    font-size:1.8rem;
+
+    margin-bottom:1rem;
+}
+
+.team-card__meta{
+    color:var(--color-gold);
+
+    font-weight:600;
+
+    margin-bottom:1.5rem;
+}
+
+.team-card__quote{
+    color:rgba(255,255,255,.75);
+
+    font-style:italic;
+
+    line-height:1.7;
+
+    margin-top:auto;
+}
+
+/* Flechas */
+
+.team-button-prev,
+.team-button-next{
+    color:var(--color-gold);
+}
+
+.team-button-prev::after,
+.team-button-next::after{
+    font-size:24px;
+}
+
+/* Punticos */
+
+.swiper-pagination-bullet{
+    background:rgba(255,255,255,.3);
+    opacity:1;
+}
+
+.swiper-pagination-bullet-active{
+    background:var(--color-gold);
+}
+.team .section-title{
+    color: white;
+}
+
+.team .section-description{
+    color: rgba(255,255,255,.68);
+}
 /* ============================================================
    10. VIDEO CARDS (Casos reales)
    ============================================================ */
@@ -1953,7 +2145,23 @@ select.form-control option {
         width: 20px;
         height: 20px;
     }
+     .team-card__photo{
+        width:180px;
+        height:180px;
+
+        border-radius:50%;
+    }
+
+    .team-card h3{
+        font-size:1.6rem;
+    }
+
+    .team-button-prev,
+    .team-button-next{
+        display:none;
+    }
 }
+   
 /* ============================================================
    20. RESPONSIVE — SMALL MOBILE (≤ 480px)
    ============================================================ */

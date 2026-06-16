@@ -3,7 +3,7 @@
 
 const CONFIG = {
 
-  WHATSAPP_NUMBER: '573152616931',
+  WHATSAPP_NUMBER: '17797175114',
 };
 
 
@@ -692,5 +692,79 @@ Quisiera recibir orientación legal sobre mi caso.`;
     window.addEventListener('load', updateButton);
 
     updateButton();
+
+})();
+
+new Swiper('.teamSwiper', {
+
+    loop: true,
+
+    grabCursor: true,
+
+    spaceBetween: 30,
+
+    slidesPerView: 1,
+
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+
+    navigation: {
+        nextEl: '.team-button-next',
+        prevEl: '.team-button-prev',
+    },
+
+    breakpoints: {
+
+        768: {
+            slidesPerView: 2,
+        },
+
+        1200: {
+            slidesPerView: 3,
+        }
+    }
+});
+/* ============================================================
+   FRAUD CARDS EXPANDIBLES
+============================================================ */
+
+(function initFraudCards() {
+
+    const cards = document.querySelectorAll('.fraud-card');
+
+    cards.forEach(card => {
+
+        const button = card.querySelector('.fraud-card__toggle');
+
+        if (!button) return;
+
+        button.addEventListener('click', () => {
+
+            const isOpen = card.classList.contains('active');
+
+            cards.forEach(c => {
+
+                c.classList.remove('active');
+
+                const btn = c.querySelector('.fraud-card__toggle');
+
+                if (btn) {
+                    btn.textContent = 'Conocer más';
+                }
+
+            });
+
+            if (!isOpen) {
+
+                card.classList.add('active');
+
+                button.textContent = 'Ver menos';
+            }
+
+        });
+
+    });
 
 })();
