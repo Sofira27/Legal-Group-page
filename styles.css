@@ -1745,7 +1745,58 @@ select.form-control option {
 
 .whatsapp-fab:hover .whatsapp-fab__tooltip { opacity: 1; }
 
+.scroll-fab{
+    position: fixed;
 
+    right: 28px;
+    bottom: 100px;
+
+    z-index: 998;
+
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+
+    background: #071A35;
+
+    border: 2px solid rgba(212,166,58,.25);
+
+    color: var(--color-gold);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow:
+        0 4px 20px rgba(7,26,53,.45);
+
+    transition:
+        transform var(--transition-base),
+        box-shadow var(--transition-base),
+        background var(--transition-base);
+
+    cursor: pointer;
+}
+
+.scroll-fab:hover{
+    transform: scale(1.08) translateY(-3px);
+
+    box-shadow:
+        0 8px 30px rgba(7,26,53,.55);
+}
+.scroll-fab::before{
+    content: '';
+
+    position: absolute;
+    inset: -4px;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(212,166,58,.25);
+
+    animation: pulseFab 2.5s ease-in-out infinite;
+}
 /* ============================================================
    18. RESPONSIVE — TABLET (≤ 1024px)
    ============================================================ */
@@ -1890,7 +1941,18 @@ select.form-control option {
   .whatsapp-fab { bottom: 20px; right: 20px; width: 54px; height: 54px; }
   .whatsapp-fab__tooltip { display: none; }
 
-  
+  .scroll-fab{
+        width: 54px;
+        height: 54px;
+
+        right: 20px;
+        bottom: 90px;
+    }
+
+    .scroll-fab__icon{
+        width: 20px;
+        height: 20px;
+    }
 }
 /* ============================================================
    20. RESPONSIVE — SMALL MOBILE (≤ 480px)

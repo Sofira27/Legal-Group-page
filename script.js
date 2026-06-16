@@ -562,3 +562,135 @@ Quisiera recibir orientación legal sobre mi caso.`;
   window.addEventListener('scroll', show, { passive: true });
   show();
 })();
+
+/* ============================================================
+   BOTÓN FLOTANTE EXPLORAR / VOLVER ARRIBA
+============================================================ */
+
+(function initScrollFab() {
+
+    const btn = document.getElementById('scrollFab');
+
+    if (!btn) return;
+
+    const icon = btn.querySelector('.scroll-fab__icon');
+
+    const sections = [
+        '#hero',
+        '#servicios',
+        '#como-ayudamos',
+        '#noticias',
+        '#testimonios',
+        '#evaluacion',
+        '#faq',
+        '#cta-final'
+    ];
+
+    /* Estado inicial */
+    btn.style.opacity = '0';
+    btn.style.transform = 'scale(.8)';
+    btn.style.pointerEvents = 'none';
+
+    function updateButton() {
+
+        /* Mostrar igual que WhatsApp */
+        if (window.scrollY > 300) {
+
+            btn.style.opacity = '1';
+            btn.style.transform = 'scale(1)';
+            btn.style.pointerEvents = 'auto';
+
+        } else {
+
+            btn.style.opacity = '0';
+            btn.style.transform = 'scale(.8)';
+            btn.style.pointerEvents = 'none';
+        }
+
+        /* Detectar si el footer está visible */
+        const footer = document.querySelector('.footer');
+
+        if (!footer) return;
+
+        const footerRect = footer.getBoundingClientRect();
+
+        const inFooter =
+            footerRect.top <= window.innerHeight &&
+            footerRect.bottom > 0;
+
+        if (inFooter) {
+
+            /* Flecha hacia arriba */
+            icon.style.transform = 'rotate(0deg)';
+
+            btn.dataset.direction = 'up';
+
+            btn.setAttribute('aria-label', 'Volver arriba');
+            btn.setAttribute('title', 'Volver arriba');
+
+        } else {
+
+            /* Flecha hacia abajo */
+            icon.style.transform = 'rotate(180deg)';
+
+            btn.dataset.direction = 'down';
+
+            btn.setAttribute('aria-label', 'Seguir navegando');
+            btn.setAttribute('title', 'Seguir navegando');
+        }
+    }
+
+    btn.addEventListener('click', () => {
+
+        const goingUp = btn.dataset.direction === 'up';
+
+        /* Footer → Hero */
+        if (goingUp) {
+
+            document.getElementById('hero')?.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+
+            return;
+        }
+
+        /* Ir a la siguiente sección */
+        const currentPosition = window.scrollY + 150;
+
+        for (let i = 0; i < sections.length; i++) {
+
+            const section = document.querySelector(sections[i]);
+
+            if (!section) continue;
+
+            if (section.offsetTop > currentPosition) {
+
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                return;
+            }
+        }
+
+        /* Después del CTA Final → Footer */
+        document.querySelector('.footer')?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+
+    });
+
+    window.addEventListener('scroll', updateButton, {
+        passive: true
+    });
+
+    window.addEventListener('resize', updateButton);
+
+    window.addEventListener('load', updateButton);
+
+    updateButton();
+
+})();
